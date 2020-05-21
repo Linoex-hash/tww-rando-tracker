@@ -27,7 +27,8 @@ export default class LogicHelper {
       this.smallKeysRequiredForLocation
     ]);
 
-    this._setStartingAndImpossibleItems();
+    this.startingItems = {};
+    this.impossibleItems = {};
   }
 
   static reset() {
@@ -461,21 +462,6 @@ export default class LogicHelper {
     const macroValue = Macros.getMacro(requirement);
     if (macroValue) {
       return this._booleanExpressionForRequirements(macroValue);
-    }
-
-    const optionEnabledRequirementValue = this._checkOptionEnabledRequirement(requirement);
-    if (!_.isNil(optionEnabledRequirementValue)) {
-      return optionEnabledRequirementValue ? this.TOKENS.NOTHING : this.TOKENS.IMPOSSIBLE;
-    }
-
-    const otherLocationRequirementValue = this._checkOtherLocationRequirement(requirement);
-    if (!_.isNil(otherLocationRequirementValue)) {
-      return otherLocationRequirementValue;
-    }
-
-    const predeterminedItemRequirementValue = this._checkPredeterminedItemRequirement(requirement);
-    if (!_.isNil(predeterminedItemRequirementValue)) {
-      return predeterminedItemRequirementValue ? this.TOKENS.NOTHING : this.TOKENS.IMPOSSIBLE;
     }
 
     return requirement;

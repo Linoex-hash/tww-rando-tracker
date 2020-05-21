@@ -8,9 +8,13 @@ import {
 import Launcher from './launcher';
 import Tracker from './tracker';
 
+import TrackerController from '../services/tracker-controller';
+
 import '../css/main.scss';
 
 export default function App() {
+  TrackerController.calculateLogic();
+
   return (
     <HashRouter>
       <Switch>
